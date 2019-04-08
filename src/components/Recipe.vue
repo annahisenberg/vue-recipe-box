@@ -1,20 +1,20 @@
 <template>
   <div id="recipe-container">
-    <h2>
-      {{ getTitle }}
-      <button @click="addRecipe">+</button>
-    </h2>
     <div id="form-container" v-if="clicked">
       <form>
         <label>Title</label>
         <input v-model="form.title" type="text">
         <label>Ingredients</label>
-        <input @change="form.Ingredients.push($event.target.value)" type="text">
+        <input @change="separateIngredients" v-model="form.Ingredients" type="text">
         <label>Directions</label>
-        <input @change="form.Directions.push($event.target.value)" type="text">
+        <input @change="separateDirections" v-model="form.Directions" type="text">
         <button @click.prevent="saveNewRecipe">Add Recipe</button>
       </form>
     </div>
+    <h2>
+      {{ getTitle }}
+      <button @click="addRecipe">+</button>
+    </h2>
     <p>Ingredients:</p>
     <ul>
       <li :key="index" v-for="(ingredient, index) in getIngredients">{{ingredient}}</li>
@@ -34,8 +34,8 @@ export default {
       clicked: false,
       form: {
         title: "",
-        Ingredients: [],
-        Directions: []
+        Ingredients: "",
+        Directions: ""
       }
     };
   },
@@ -56,6 +56,12 @@ export default {
     },
     saveNewRecipe() {
       this.$store.dispatch("saveNewRecipe", this.form);
+    },
+    separateIngredients() {
+      this.form.Ingredients = this.form.Ingredients.split(",");
+    },
+    separateDirections() {
+      this.form.Directions = this.form.Directions.split(",");
     }
   }
 };

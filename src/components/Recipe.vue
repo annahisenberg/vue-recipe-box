@@ -1,7 +1,7 @@
 <template>
   <b-card bg-variant="info" text-variant="white" id="recipe-container">
-    <button @click="addRecipe">+</button>
-    <div id="form-container" v-if="clicked">
+    <button v-b-modal.modal-1>+</button>
+    <b-modal id="modal-1">
       <form>
         <label>Title</label>
         <input v-model="form.title" type="text">
@@ -11,7 +11,7 @@
         <input @change="separateDirections" v-model="form.Directions" type="text">
         <button @click.prevent="saveNewRecipe">Add Recipe</button>
       </form>
-    </div>
+    </b-modal>
     <button @click="deleteRecipe">Delete Recipe</button>
     <section>
       <h2>{{ getTitle }}</h2>
@@ -32,7 +32,6 @@ export default {
   name: "Recipe",
   data() {
     return {
-      clicked: false,
       form: {
         title: "",
         Ingredients: "",
@@ -52,9 +51,6 @@ export default {
     }
   },
   methods: {
-    addRecipe() {
-      this.clicked = !this.clicked;
-    },
     saveNewRecipe() {
       this.$store.dispatch("saveNewRecipe", this.form);
     },

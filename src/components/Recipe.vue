@@ -7,11 +7,12 @@
     <div id="form-container" v-if="clicked">
       <form>
         <label>Title</label>
-        <input type="text">
+        <input v-model="form.title" type="text">
         <label>Ingredients</label>
-        <input type="text">
+        <input @change="form.Ingredients.push($event.target.value)" type="text">
         <label>Directions</label>
-        <input type="text">
+        <input @change="form.Directions.push($event.target.value)" type="text">
+        <button @click.prevent="saveNewRecipe">Add Recipe</button>
       </form>
     </div>
     <p>Ingredients:</p>
@@ -30,7 +31,12 @@ export default {
   name: "Recipe",
   data() {
     return {
-      clicked: false
+      clicked: false,
+      form: {
+        title: "",
+        Ingredients: [],
+        Directions: []
+      }
     };
   },
   computed: {
@@ -47,6 +53,9 @@ export default {
   methods: {
     addRecipe() {
       this.clicked = !this.clicked;
+    },
+    saveNewRecipe() {
+      this.$store.dispatch("saveNewRecipe", this.form);
     }
   }
 };

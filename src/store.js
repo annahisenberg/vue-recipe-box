@@ -9,7 +9,7 @@ export default new Vuex.Store({
     recipes: [{
         title: 'Artichoke Pasta',
         Ingredients: ['2 tablespoons butter', '2 cloves garlic', '1 cup heavy cream'],
-        Directions: ['In a medium saucepan, melt the butter over moderately low heat. Add the garlic and cook for 30 seconds. Stir in the cream, salt, pepper, and artichoke       hearts. Cook until just heated through, about 3 minutes.', 'blah blah blah']
+        Directions: ['In a medium saucepan, melt the butter over moderately low heat. Add the garlic and cook for 30 seconds. Stir in the cream, salt, pepper, and artichoke hearts. Cook until just heated through, about 3 minutes.', 'blah blah blah']
       },
       {
         title: 'Easy Chocolate Pie',
@@ -26,6 +26,9 @@ export default new Vuex.Store({
   mutations: {
     UPDATE_CURRENT_RECIPE(state, payload) {
       state.currentRecipe = payload;
+    },
+    SAVE_NEW_RECIPE(state, payload) {
+      state.recipes.push(payload);
     }
   },
   actions: {
@@ -33,6 +36,11 @@ export default new Vuex.Store({
       commit
     }, currentRecipe) {
       commit('UPDATE_CURRENT_RECIPE', currentRecipe);
+    },
+    saveNewRecipe({
+      commit
+    }, newRecipe) {
+      commit('SAVE_NEW_RECIPE', newRecipe);
     }
   },
   getters: {

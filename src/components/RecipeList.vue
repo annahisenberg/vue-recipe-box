@@ -26,7 +26,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 ul {
-  border: 0.2rem solid black;
   list-style-type: none;
 }
 

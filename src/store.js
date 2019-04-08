@@ -29,6 +29,11 @@ export default new Vuex.Store({
     },
     SAVE_NEW_RECIPE(state, payload) {
       state.recipes.push(payload);
+    },
+    DELETE_RECIPE(state, payload) {
+      let item = state.recipes.indexOf(payload.title);
+      state.recipes.splice(item, 1);
+      state.currentRecipe = state.recipes[0];
     }
   },
   actions: {
@@ -41,10 +46,15 @@ export default new Vuex.Store({
       commit
     }, newRecipe) {
       commit('SAVE_NEW_RECIPE', newRecipe);
+    },
+    deleteRecipe({
+      commit
+    }, recipe) {
+      commit('DELETE_RECIPE', recipe);
     }
   },
   getters: {
-    getCurrentRecipe(state) {
+    currentRecipe(state) {
       return state.currentRecipe;
     }
   }

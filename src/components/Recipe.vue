@@ -1,5 +1,6 @@
 <template>
-  <div id="recipe-container">
+  <b-card bg-variant="info" text-variant="white" id="recipe-container">
+    <button @click="addRecipe">+</button>
     <div id="form-container" v-if="clicked">
       <form>
         <label>Title</label>
@@ -11,19 +12,19 @@
         <button @click.prevent="saveNewRecipe">Add Recipe</button>
       </form>
     </div>
-    <h2>
-      {{ getTitle }}
-      <button @click="addRecipe">+</button>
-    </h2>
-    <p>Ingredients:</p>
-    <ul>
-      <li :key="index" v-for="(ingredient, index) in getIngredients">{{ingredient}}</li>
-    </ul>
-    <p>Directions:</p>
-    <ol>
-      <li :key="index" v-for="(direction, index) in getDirections">{{direction}}</li>
-    </ol>
-  </div>
+    <button @click="deleteRecipe">Delete Recipe</button>
+    <section>
+      <h2>{{ getTitle }}</h2>
+      <p>Ingredients:</p>
+      <ul>
+        <li :key="index" v-for="(ingredient, index) in getIngredients">{{ingredient}}</li>
+      </ul>
+      <p>Directions:</p>
+      <ol>
+        <li :key="index" v-for="(direction, index) in getDirections">{{direction}}</li>
+      </ol>
+    </section>
+  </b-card>
 </template>
 
 <script>
@@ -41,13 +42,13 @@ export default {
   },
   computed: {
     getTitle() {
-      return this.$store.getters.getCurrentRecipe.title;
+      return this.$store.getters.currentRecipe.title;
     },
     getIngredients() {
-      return this.$store.getters.getCurrentRecipe.Ingredients;
+      return this.$store.getters.currentRecipe.Ingredients;
     },
     getDirections() {
-      return this.$store.getters.getCurrentRecipe.Directions;
+      return this.$store.getters.currentRecipe.Directions;
     }
   },
   methods: {
@@ -62,6 +63,9 @@ export default {
     },
     separateDirections() {
       this.form.Directions = this.form.Directions.split(",");
+    },
+    deleteRecipe() {
+      this.$store.dispatch("deleteRecipe", this.form);
     }
   }
 };
@@ -70,10 +74,5 @@ export default {
 <style scoped>
 ul {
   list-style-type: none;
-}
-
-#recipe-container,
-#form-container {
-  border: 0.2rem solid black;
 }
 </style>

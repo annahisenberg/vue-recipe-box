@@ -56,6 +56,18 @@ export default new Vuex.Store({
   getters: {
     currentRecipe(state) {
       return state.currentRecipe;
+    },
+    currentTitle(state) {
+      return state.currentRecipe.title;
+    },
+    currentIngredients(state) {
+      return state.currentRecipe.Ingredients;
+    },
+    currentDirections(state) {
+      return state.currentRecipe.Directions;
+    },
+    oneRecipe(state) {
+      return state.recipes[0];
     }
   }
 })

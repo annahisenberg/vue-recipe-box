@@ -34,11 +34,11 @@
         <div id="recipe-container">
           <p class="recipe-headers">Ingredients:</p>
           <ul>
-            <li :key="index" v-for="(ingredient, index) in getIngredients">{{ingredient}}</li>
+            <li :key="index" v-for="(ingredient, index) in currentIngredients">{{ingredient}}</li>
           </ul>
           <p class="recipe-headers">Directions:</p>
           <ol>
-            <li :key="index" v-for="(direction, index) in getDirections">{{direction}}</li>
+            <li :key="index" v-for="(direction, index) in currentDirections">{{direction}}</li>
           </ol>
         </div>
       </b-card-text>
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Recipe",
   data() {
@@ -59,15 +60,13 @@ export default {
     };
   },
   computed: {
-    getTitle() {
-      return this.$store.getters.currentRecipe.title;
-    },
-    getIngredients() {
-      return this.$store.getters.currentRecipe.Ingredients;
-    },
-    getDirections() {
-      return this.$store.getters.currentRecipe.Directions;
-    }
+    ...mapGetters([
+      "currentRecipe",
+      "oneRecipe",
+      "currentTitle",
+      "currentIngredients",
+      "currentDirections"
+    ])
   },
   methods: {
     saveNewRecipe() {

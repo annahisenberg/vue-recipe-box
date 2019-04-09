@@ -1,13 +1,17 @@
 <template>
-  <section>
-    <ul>
-      <li
-        @click="updateCurrentRecipe(recipe)"
-        :key="index"
-        v-for="(recipe, index) in recipes"
-      >{{recipe.title}}</li>
-    </ul>
-  </section>
+  <b-container>
+    <b-card bg-variant="warning">
+      <b-list-group>
+        <b-list-group-item
+          class="m-1"
+          :class="{ active: recipe === currentRecipe}"
+          @click="updateCurrentRecipe(recipe)"
+          :key="index"
+          v-for="(recipe, index) in recipes"
+        >{{recipe.title}}</b-list-group-item>
+      </b-list-group>
+    </b-card>
+  </b-container>
 </template>
 
 <script>
@@ -15,8 +19,14 @@ import { mapState } from "vuex";
 export default {
   name: "RecipeList",
   computed: mapState(["recipes"]),
+  data() {
+    return {
+      currentRecipe: {}
+    };
+  },
   methods: {
     updateCurrentRecipe(recipe) {
+      this.currentRecipe = recipe;
       this.$store.dispatch("addCurrentRecipe", recipe);
     }
   }
@@ -25,13 +35,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-ul {
-  list-style-type: none;
-}
-
-li:hover {
-  background-color: lightcoral;
-  color: white;
-  cursor: pointer;
-}
 </style>

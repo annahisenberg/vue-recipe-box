@@ -29,17 +29,19 @@
           <b-button @click.prevent="saveNewRecipe">Add Recipe</b-button>
         </div>
       </b-modal>
-      <section>
+      <b-card-text class="m-2">
         <h2>{{ getTitle }}</h2>
-        <p>Ingredients:</p>
-        <ul>
-          <li :key="index" v-for="(ingredient, index) in getIngredients">{{ingredient}}</li>
-        </ul>
-        <p>Directions:</p>
-        <ol>
-          <li :key="index" v-for="(direction, index) in getDirections">{{direction}}</li>
-        </ol>
-      </section>
+        <div id="recipe-container">
+          <p class="recipe-headers">Ingredients:</p>
+          <ul>
+            <li :key="index" v-for="(ingredient, index) in getIngredients">{{ingredient}}</li>
+          </ul>
+          <p class="recipe-headers">Directions:</p>
+          <ol>
+            <li :key="index" v-for="(direction, index) in getDirections">{{direction}}</li>
+          </ol>
+        </div>
+      </b-card-text>
     </b-card>
   </b-container>
 </template>
@@ -85,7 +87,11 @@ export default {
 </script>
 
 <style scoped>
-ul {
-  list-style-type: none;
+#recipe-container {
+  text-align: left;
+}
+
+.recipe-headers {
+  font-weight: bold;
 }
 </style>

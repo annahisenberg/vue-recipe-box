@@ -3,7 +3,7 @@
     <b-card bg-variant="warning">
       <b-list-group>
         <b-list-group-item
-          class="m-1"
+          class="m-1 li"
           :class="{ active: recipe === currentRecipe}"
           @click="updateCurrentRecipe(recipe)"
           :key="index"
@@ -35,4 +35,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.li {
+  cursor: pointer;
+}
 </style>

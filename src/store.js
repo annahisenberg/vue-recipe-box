@@ -34,6 +34,9 @@ export default new Vuex.Store({
       let item = state.recipes.indexOf(payload);
       state.recipes.splice(item, 1);
       state.currentRecipe = state.recipes[0];
+    },
+    FILTER_RECIPES(state, payload) {
+      state.recipes.filter(recipe => recipe.title = payload)
     }
   },
   actions: {
@@ -52,6 +55,11 @@ export default new Vuex.Store({
     }, recipe) {
       console.log(recipe);
       commit('DELETE_RECIPE', recipe);
+    },
+    filterRecipes({
+      commit
+    }, searchValue) {
+      commit('FILTER_RECIPES', searchValue);
     }
   },
   getters: {

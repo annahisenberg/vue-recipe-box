@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>Recipe Box</h1>
+    <filter-recipes></filter-recipes>
     <recipe-list></recipe-list>
     <recipe></recipe>
   </div>
@@ -9,12 +10,14 @@
 <script>
 import RecipeList from "./components/RecipeList.vue";
 import Recipe from "./components/Recipe.vue";
+import FilterRecipes from "./components/filter.vue";
 
 export default {
   name: "app",
   components: {
     RecipeList,
-    Recipe
+    Recipe,
+    FilterRecipes
   }
 };
 </script>

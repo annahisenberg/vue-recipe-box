@@ -33,12 +33,6 @@ export default {
       currentRecipe: {}
     };
   },
-  created() {
-    console.log(this.recipes);
-  },
-  updated() {
-    console.log(this.recipes);
-  },
   methods: {
     updateCurrentRecipe(recipe) {
       this.currentRecipe = recipe;

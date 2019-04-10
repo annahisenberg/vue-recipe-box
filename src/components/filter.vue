@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "FilterRecipes",
+  name: "filter",
   data() {
     return {
       filterValue: ""
@@ -17,7 +17,6 @@ export default {
   },
   methods: {
     searchRecipes() {
-      console.log(this.filterValue);
       this.$store.dispatch("filterRecipes", this.filterValue);
     }
   }

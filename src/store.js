@@ -38,7 +38,7 @@ export default new Vuex.Store({
     },
     FILTER_RECIPES(state, payload) {
       state.filteredRecipes = state.recipes.filter(recipe => {
-        return recipe.title === payload;
+        return recipe.title.toLowerCase().includes(payload);
       });
     }
   },

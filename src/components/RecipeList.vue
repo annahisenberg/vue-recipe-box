@@ -1,7 +1,16 @@
 <template>
   <b-container>
     <b-card bg-variant="warning">
-      <b-list-group>
+      <b-list-group v-if="Object.keys(filteredRecipes).length > 0">
+        <b-list-group-item
+          class="m-1 li"
+          :class="{ active: recipe === currentRecipe}"
+          @click="updateCurrentRecipe(recipe)"
+          :key="index"
+          v-for="(recipe, index) in filteredRecipes"
+        >{{recipe.title}}</b-list-group-item>
+      </b-list-group>
+      <b-list-group v-else>
         <b-list-group-item
           class="m-1 li"
           :class="{ active: recipe === currentRecipe}"
@@ -18,11 +27,17 @@
 import { mapState } from "vuex";
 export default {
   name: "RecipeList",
-  computed: mapState(["recipes"]),
+  computed: mapState(["recipes", "filteredRecipes"]),
   data() {
     return {
       currentRecipe: {}
     };
+  },
+  created() {
+    console.log(this.recipes);
+  },
+  updated() {
+    console.log(this.recipes);
   },
   methods: {
     updateCurrentRecipe(recipe) {

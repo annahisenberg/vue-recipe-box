@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "filter",
+  name: "FilterRecipes",
   data() {
     return {
       filterValue: ""

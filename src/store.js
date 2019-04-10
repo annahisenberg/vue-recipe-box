@@ -21,7 +21,8 @@ export default new Vuex.Store({
         Ingredients: ['Boneless chicken tacos', 'limes', 'corn tortillas'],
         Directions: ['Saute chicken in a medium saucepan over medium high heat for about 20 minutes. Add vinegar, lime juice, sugar, salt, pepper, green onion, garlic and oregano. Simmer for an extra 10 minutes.', 'blah blah blah']
       }
-    ]
+    ],
+    filteredRecipes: {}
   },
   mutations: {
     UPDATE_CURRENT_RECIPE(state, payload) {
@@ -36,7 +37,9 @@ export default new Vuex.Store({
       state.currentRecipe = state.recipes[0];
     },
     FILTER_RECIPES(state, payload) {
-      state.recipes.filter(recipe => recipe.title = payload)
+      state.filteredRecipes = state.recipes.filter(recipe => {
+        return recipe.title === payload;
+      });
     }
   },
   actions: {

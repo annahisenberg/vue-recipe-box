@@ -31,8 +31,7 @@ export default new Vuex.Store({
       state.recipes.push(payload);
     },
     DELETE_RECIPE(state, payload) {
-      console.log(payload);
-      let item = state.recipes.indexOf(payload.title);
+      let item = state.recipes.indexOf(payload);
       state.recipes.splice(item, 1);
       state.currentRecipe = state.recipes[0];
     }
@@ -51,6 +50,7 @@ export default new Vuex.Store({
     deleteRecipe({
       commit
     }, recipe) {
+      console.log(recipe);
       commit('DELETE_RECIPE', recipe);
     }
   },

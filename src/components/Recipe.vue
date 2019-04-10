@@ -30,7 +30,7 @@
         </div>
       </b-modal>
       <b-card-text class="m-2">
-        <h2>{{ getTitle }}</h2>
+        <h2>{{ currentTitle }}</h2>
         <div id="recipe-container">
           <p class="recipe-headers">Ingredients:</p>
           <ul>

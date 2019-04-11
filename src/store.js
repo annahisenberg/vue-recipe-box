@@ -42,6 +42,26 @@ export default new Vuex.Store({
       state.filteredRecipes = state.copiedRecipes.filter(recipe => {
         return recipe.title.toLowerCase().includes(payload);
       });
+    },
+    UPDATE_NEW_TITLE(state, payload) {
+      let currentTitle = state.currentRecipe.title;
+      return state.recipes.forEach(recipe => {
+        if (recipe.title === currentTitle) {
+          recipe.title = payload;
+          console.log(recipe.title)
+        }
+      });
+    },
+    UPDATE_INGREDIENTS(state, payload) {
+      let currentTitle = state.currentRecipe.title;
+      let payloadArray = payload.split(",");
+
+      return state.recipes.forEach(recipe => {
+        if (recipe.title === currentTitle) {
+          recipe.Ingredients = '';
+          recipe.Ingredients = payloadArray;
+        }
+      });
     }
   },
   actions: {

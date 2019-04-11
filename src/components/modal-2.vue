@@ -1,23 +1,13 @@
 <template>
   <div>
     <b-form-group label="title" label-for="input-1" variant="primary">
-      <b-form-input id="input-1" :value="currentTitle" type="text" placeholder="title"></b-form-input>
+      <b-form-input id="input-1" v-model="currentTitle" type="text" placeholder="title"></b-form-input>
     </b-form-group>
     <b-form-group label="ingredients:">
-      <b-form-input
-        @change="separateIngredients"
-        :value="currentIngredients"
-        type="text"
-        placeholder="ingredients"
-      ></b-form-input>
+      <b-form-input v-model="currentIngredients" type="text" placeholder="ingredients"></b-form-input>
     </b-form-group>
     <b-form-group label="directions:">
-      <b-form-input
-        @change="separateDirections"
-        :value="currentDirections"
-        type="text"
-        placeholder="directions"
-      ></b-form-input>
+      <b-form-input v-model="currentDirections" type="text" placeholder="directions"></b-form-input>
     </b-form-group>
     <div slot="modal-footer">
       <b-button @click.prevent="editRecipe">Edit Recipe</b-button>
@@ -29,35 +19,37 @@
 import { mapGetters } from "vuex";
 export default {
   name: "ModalTwo",
-  data() {
-    return {
-      form: {
-        title: "",
-        Ingredients: "",
-        Directions: ""
-      }
-    };
-  },
+
   computed: {
-    ...mapGetters([
-      "currentRecipe",
-      "oneRecipe",
-      "currentTitle",
-      "currentIngredients",
-      "currentDirections",
-      "allRecipes"
-    ])
+    currentTitle: {
+      get: function() {
+        return this.$store.getters.currentTitle;
+      },
+      set: function(val) {
+        return this.$store.commit("UPDATE_NEW_TITLE", val);
+      }
+    },
+    currentIngredients: {
+      get: function() {
+        return this.$store.getters.currentIngredients;
+      },
+      set: function(val) {
+        return this.$store.commit("UPDATE_INGREDIENTS", val);
+      }
+    },
+    currentDirections: {
+      get: function() {
+        return this.$store.getters.currentDirections;
+      },
+      set: function(val) {
+        console.log(val);
+      }
+    }
   },
   methods: {
-    separateIngredients() {
-      this.form.Ingredients = this.form.Ingredients.split(",");
-    },
-    separateDirections() {
-      this.form.Directions = this.form.Directions.split(",");
+    editRecipe() {
+      console.log(this.currentTitle);
     }
-    // editRecipe() {
-    //     this.$store.dispatch("editRecipe", this.)
-    // }
   }
 };
 </script>

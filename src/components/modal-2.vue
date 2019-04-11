@@ -42,7 +42,7 @@ export default {
         return this.$store.getters.currentDirections;
       },
       set: function(val) {
-        console.log(val);
+        return this.$store.commit("UPDATE_DIRECTIONS", val);
       }
     }
   },

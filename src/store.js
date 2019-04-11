@@ -62,6 +62,17 @@ export default new Vuex.Store({
           recipe.Ingredients = payloadArray;
         }
       });
+    },
+    UPDATE_DIRECTIONS(state, payload) {
+      let currentTitle = state.currentRecipe.title;
+      let payloadArray = payload.split(",");
+
+      return state.recipes.forEach(recipe => {
+        if (recipe.title === currentTitle) {
+          recipe.Directions = '';
+          recipe.Directions = payloadArray;
+        }
+      });
     }
   },
   actions: {

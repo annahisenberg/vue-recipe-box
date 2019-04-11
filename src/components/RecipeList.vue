@@ -51,5 +51,11 @@ export default {
 <style scoped>
 .li {
   cursor: pointer;
+  background: #edf0c0;
+}
+
+.active {
+  background: #d6a204 !important;
+  border: #d6a204 !important;
 }
 </style>

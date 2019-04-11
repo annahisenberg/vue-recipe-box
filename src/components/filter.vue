@@ -4,11 +4,16 @@
       <b-form-group>
         <b-form-input v-model="filterValue" placeholder="Search Recipes"></b-form-input>
         <b-button-group class="m-1">
+          <b-button v-b-modal.modal-1>+</b-button>
           <b-button @click="searchRecipes">Search</b-button>
           <b-button @click="seeAllRecipes">See All Recipes</b-button>
         </b-button-group>
       </b-form-group>
     </b-container>
+
+    <b-modal id="modal-1">
+      <modal-one></modal-one>
+    </b-modal>
 
     <div v-if="showAllRecipes">
       <b-container>
@@ -30,6 +35,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import ModalOne from "./modal-1";
 
 export default {
   name: "FilterRecipe",
@@ -38,6 +44,9 @@ export default {
       filterValue: "",
       showAllRecipes: false
     };
+  },
+  components: {
+    ModalOne
   },
   computed: {
     ...mapGetters(["allRecipes"])

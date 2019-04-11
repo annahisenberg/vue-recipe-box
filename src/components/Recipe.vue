@@ -1,8 +1,5 @@
 <template>
   <b-container>
-    <b-modal id="modal-1">
-      <modal-one></modal-one>
-    </b-modal>
     <b-modal id="modal-2">
       <modal-two></modal-two>
     </b-modal>
@@ -15,7 +12,6 @@
         v-if="Object.keys(currentRecipe).length > 0"
       >
         <b-button-group>
-          <b-button v-b-modal.modal-1>+</b-button>
           <b-button @click="deleteRecipe">Delete Recipe</b-button>
           <b-button v-b-modal.modal-2>Edit Recipe</b-button>
         </b-button-group>
@@ -40,13 +36,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import ModalOne from "./modal-1";
+
 import ModalTwo from "./modal-2";
 
 export default {
   name: "Recipe",
   components: {
-    ModalOne,
     ModalTwo
   },
   computed: {

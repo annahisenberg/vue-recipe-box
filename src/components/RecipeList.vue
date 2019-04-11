@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container v-if="recipes.length > 0">
     <b-card bg-variant="warning" class="m-2">
       <b-list-group v-if="Object.keys(filteredRecipes).length > 0">
         <b-list-group-item
@@ -19,6 +19,11 @@
           v-for="(recipe, index) in recipes"
         >{{recipe.title}}</b-list-group-item>
       </b-list-group>
+    </b-card>
+  </b-container>
+  <b-container v-else>
+    <b-card bg-variant="warning" class="m-2">
+      <p>There are no recipes to show.</p>
     </b-card>
   </b-container>
 </template>

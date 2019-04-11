@@ -1,55 +1,14 @@
 <template>
   <b-container>
     <b-modal id="modal-1">
-      <b-form-group label="title" label-for="input-1" variant="primary">
-        <b-form-input id="input-1" v-model="form.title" type="text" placeholder="title"></b-form-input>
-      </b-form-group>
-      <b-form-group label="ingredients:">
-        <b-form-input
-          @change="separateIngredients"
-          v-model="form.Ingredients"
-          type="text"
-          placeholder="ingredients"
-        ></b-form-input>
-      </b-form-group>
-      <b-form-group label="directions:">
-        <b-form-input
-          @change="separateDirections"
-          v-model="form.Directions"
-          type="text"
-          placeholder="directions"
-        ></b-form-input>
-      </b-form-group>
-      <div slot="modal-footer">
-        <b-button @click.prevent="saveNewRecipe">Add Recipe</b-button>
-      </div>
+      <modal-one></modal-one>
     </b-modal>
     <b-modal id="modal-2">
-      <b-form-group label="title" label-for="input-1" variant="primary">
-        <b-form-input id="input-1" :value="currentTitle" type="text" placeholder="title"></b-form-input>
-      </b-form-group>
-      <b-form-group label="ingredients:">
-        <b-form-input
-          @change="separateIngredients"
-          :value="currentIngredients"
-          type="text"
-          placeholder="ingredients"
-        ></b-form-input>
-      </b-form-group>
-      <b-form-group label="directions:">
-        <b-form-input
-          @change="separateDirections"
-          :value="currentDirections"
-          type="text"
-          placeholder="directions"
-        ></b-form-input>
-      </b-form-group>
-      <div slot="modal-footer">
-        <b-button @click.prevent="editRecipe">Edit Recipe</b-button>
-      </div>
+      <modal-two></modal-two>
     </b-modal>
     <div v-if="allRecipes.length > 0">
       <b-card
+        class="m-2"
         bg-variant="info"
         text-variant="white"
         id="recipe-container"
@@ -60,6 +19,7 @@
           <b-button @click="deleteRecipe">Delete Recipe</b-button>
           <b-button v-b-modal.modal-2>Edit Recipe</b-button>
         </b-button-group>
+
         <b-card-text class="m-2">
           <h2>{{ currentTitle }}</h2>
           <div id="recipe-container">
@@ -80,16 +40,14 @@
 
 <script>
 import { mapGetters } from "vuex";
+import ModalOne from "./modal-1";
+import ModalTwo from "./modal-2";
+
 export default {
   name: "Recipe",
-  data() {
-    return {
-      form: {
-        title: "",
-        Ingredients: "",
-        Directions: ""
-      }
-    };
+  components: {
+    ModalOne,
+    ModalTwo
   },
   computed: {
     ...mapGetters([
@@ -102,21 +60,9 @@ export default {
     ])
   },
   methods: {
-    saveNewRecipe() {
-      this.$store.dispatch("saveNewRecipe", this.form);
-    },
-    separateIngredients() {
-      this.form.Ingredients = this.form.Ingredients.split(",");
-    },
-    separateDirections() {
-      this.form.Directions = this.form.Directions.split(",");
-    },
     deleteRecipe() {
       this.$store.dispatch("deleteRecipe", this.currentRecipe);
     }
-    // editRecipe() {
-    //     this.$store.dispatch("editRecipe", this.)
-    // }
   }
 };
 </script>

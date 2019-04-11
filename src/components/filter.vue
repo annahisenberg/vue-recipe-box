@@ -5,7 +5,7 @@
         <b-form-input v-model="filterValue" placeholder="Search Recipes"></b-form-input>
         <b-button-group class="m-1">
           <b-button @click="searchRecipes">Search</b-button>
-          <!-- <b-button @click="listAllRecipes">See All Recipes</b-button> -->
+          <b-button @click="seeAllRecipes">See All Recipes</b-button>
         </b-button-group>
       </b-form-group>
     </b-container>
@@ -30,13 +30,9 @@
 
 <script>
 import { mapGetters } from "vuex";
-// import RecipeList from "./RecipeList.vue";
 
 export default {
   name: "FilterRecipe",
-  // components: {
-  //   RecipeList
-  // },
   data() {
     return {
       filterValue: "",
@@ -49,11 +45,11 @@ export default {
   methods: {
     searchRecipes() {
       this.$store.dispatch("filterRecipes", this.filterValue);
+    },
+    seeAllRecipes() {
+      this.filterValue = "";
+      this.$store.dispatch("filterRecipes", this.filterValue);
     }
-    // listAllRecipes() {
-    //   this.showAllRecipes = true;
-    //   console.log(this.allRecipes);
-    // }
   }
 };
 </script>

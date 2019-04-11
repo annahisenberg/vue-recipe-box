@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-card bg-variant="warning" class="m-1">
+    <b-card bg-variant="warning" class="m-2">
       <b-list-group v-if="Object.keys(filteredRecipes).length > 0">
         <b-list-group-item
           class="m-1 li"

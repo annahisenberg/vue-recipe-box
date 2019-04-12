@@ -35,7 +35,7 @@ export default new Vuex.Store({
     DELETE_RECIPE(state, payload) {
       let item = state.recipes.indexOf(payload);
       state.recipes.splice(item, 1);
-      state.currentRecipe = state.recipes[0];
+      state.currentRecipe = {};
     },
     FILTER_RECIPES(state, payload) {
       state.copiedRecipes = [...state.recipes];

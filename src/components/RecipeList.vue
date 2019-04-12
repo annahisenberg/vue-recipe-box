@@ -49,13 +49,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.list-group {
+  min-height: 200px !important;
+  height: 200px !important;
+  max-height: auto;
+  overflow: hidden !important;
+  overflow-y: auto !important;
+}
+
 .li {
   cursor: pointer;
-  background: #edf0c0;
+  background: #feffe7;
 }
 
 .active {
-  background: #d6a204 !important;
-  border: #d6a204 !important;
+  background: #e6b211 !important;
+  border: #e6b211 !important;
 }
 </style>

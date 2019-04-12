@@ -9,9 +9,6 @@
     <b-form-group label="directions:">
       <b-form-input v-model="currentDirections" type="text" placeholder="directions"></b-form-input>
     </b-form-group>
-    <div slot="modal-footer">
-      <b-button @click.prevent="editRecipe">Edit Recipe</b-button>
-    </div>
   </div>
 </template>
 
@@ -44,11 +41,6 @@ export default {
       set: function(val) {
         return this.$store.commit("UPDATE_DIRECTIONS", val);
       }
-    }
-  },
-  methods: {
-    editRecipe() {
-      console.log(this.currentTitle);
     }
   }
 };

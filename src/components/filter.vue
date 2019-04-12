@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container>
-      <b-form-group>
+      <b-form-group class="m-2">
         <b-form-input v-model="filterValue" placeholder="Search Recipes"></b-form-input>
         <b-button-group class="m-1">
           <b-button v-b-modal.modal-1>+</b-button>

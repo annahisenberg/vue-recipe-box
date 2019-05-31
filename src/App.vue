@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Recipe Box</h1>
+    <b-jumbotron header="Recipe Box"></b-jumbotron>
     <filter-recipes></filter-recipes>
     <recipe-list></recipe-list>
     <recipe></recipe>
